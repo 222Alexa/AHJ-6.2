@@ -56,11 +56,8 @@ export default class CardController {
     e.preventDefault();
 
     this.input.dispatchEvent(new MouseEvent("click"));
-
-    // console.log(this.file, "file");
-    if (this.file) {
-      this.addCard(this.file.name, this.url);
-    }
+    
+    //console.log(this.file, "file");
   }
 
   onUpload(e) {
@@ -70,28 +67,26 @@ export default class CardController {
 
     this.file = target.files && target.files[0];
 
-    // console.log(file.name, 'file');//обрезать расширение и исплоьзовать название в формировании карточки
     this.url = URL.createObjectURL(this.file);
-    // console.log(url, "url");
-    // console.log(file, "file");
 
     const reader = new FileReader();
-    // console.log(reader, 'reader')
 
     reader.readAsDataURL(this.file);
 
     reader.onload = () => {
       this.addCard(this.file.name, reader.result);
 
-      // console.log(reader.result, 'res')
       const searchUrl = [...document.querySelectorAll(".picture")].find(
         (el) => {
           return el.src === reader.result;
         }
+        
       );
-      // console.log(searchUrl, "searchUrl");
+
+      /*Здесь, если в памяти висит this.file при отмене выбор картинки появляется ошибка*/
       setTimeout(() => URL.revokeObjectURL(this.file), 6000);
       setTimeout(() => searchUrl.dispatchEvent(new MouseEvent("click")));
+      this.input.value = '';
     };
   }
 

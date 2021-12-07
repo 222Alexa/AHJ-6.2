@@ -31,3 +31,5 @@
 Обратите внимание: нужно, чтобы если пользователь два раза подряд выбрал один и тот же файл (не важно каким способом), этот файл оба раза загрузился и отображался внизу в превью (т.е. должно их быть два).
 
 ---
+
+[![Build status](https://ci.appveyor.com/api/projects/status/9c9wmxclio2w73kt/branch/main?svg=true)](https://ci.appveyor.com/project/222Alexa44925/ahj-6-2/branch/main)
